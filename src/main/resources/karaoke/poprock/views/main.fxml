@@ -1,0 +1,28 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.image.ImageView?>
+<?import javafx.scene.control.*?>
+<?import javafx.scene.layout.*?>
+
+
+<BorderPane AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0" xmlns="http://javafx.com/javafx/21" xmlns:fx="http://javafx.com/fxml/1" fx:controller="karaoke.poprock.controller.AppCtrl">
+    <center>
+        <HBox spacing="0">
+            <VBox alignment="TOP_CENTER" prefHeight="200.0" prefWidth="273.0" style="-fx-background-color: #413277;">
+                <children>
+                    <ImageView fitHeight="62.0" fitWidth="200.0">
+                        <image>
+
+                        </image>
+                    </ImageView>
+                    <VBox fx:id="vbMenu" alignment="TOP_CENTER" maxHeight="1.7976931348623157E308" prefWidth="200.0" style="-fx-background-color: #413277; -fx-border-width: 0 1 0 0;" VBox.vgrow="ALWAYS">
+                    </VBox>
+                </children>
+            </VBox>
+            <ScrollPane fitToHeight="true" fitToWidth="true" prefHeight="200.0" HBox.hgrow="ALWAYS" VBox.vgrow="ALWAYS">
+                <AnchorPane fx:id="contentPane">
+                </AnchorPane>
+            </ScrollPane>
+        </HBox>
+    </center>
+</BorderPane>
