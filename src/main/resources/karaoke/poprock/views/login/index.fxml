@@ -41,12 +41,12 @@
             <Region prefHeight="207.0" prefWidth="668.0" />
          </children>
       </VBox>
-      <TextField fx:id="tfUsername" layoutX="970.0" layoutY="325.0" prefHeight="48.0" prefWidth="327.0" style="-fx-background-color: ffff;">
+      <TextField fx:id="tfUsername" onAction="#handleSubmit" layoutX="970.0" layoutY="325.0" prefHeight="48.0" prefWidth="327.0" style="-fx-background-color: ffff;">
          <font>
             <Font name="System Bold" size="12.0" />
          </font>
       </TextField>
-      <PasswordField fx:id="pfPassword" layoutX="975.0" layoutY="437.0" prefHeight="42.0" prefWidth="327.0" style="-fx-background-color: ffff;" />
-      <Button onAction="#handleSubmit" layoutX="958.0" layoutY="535.0" mnemonicParsing="false" prefHeight="67.0" prefWidth="354.0" style="-fx-background-radius: 15; -fx-background-color: 000000000; -fx-cursor: Hand;" />
+      <PasswordField fx:id="pfPassword" onAction="#handleSubmit" layoutX="975.0" layoutY="437.0" prefHeight="42.0" prefWidth="327.0" style="-fx-background-color: ffff;" />
+      <Button onAction="#handleSubmit" layoutX="958.0" layoutY="535.0" mnemonicParsing="false" prefHeight="67.0" prefWidth="354.0" style="-fx-background-radius: 15; -fx-background-color:  rgba(255, 87, 51, 0.1); -fx-cursor: Hand;" />
     </children>
 </AnchorPane>

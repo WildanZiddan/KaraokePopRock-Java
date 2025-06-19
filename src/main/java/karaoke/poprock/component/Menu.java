@@ -27,7 +27,7 @@ public class Menu {
             Button btn = new Button(item.title());
             btn.setMaxWidth(Double.MAX_VALUE);
             btn.setAlignment(Pos.TOP_LEFT);
-            btn.setStyle("-fx-background-color: #020A7A; -fx-font-weight: bold;-fx-font-size: 16px;;-fx-padding: 8 0 8 20; -fx-text-fill: #FFFFFF;");
+            btn.setStyle("-fx-background-color: #413277; -fx-font-weight: bold;-fx-font-size: 16px;;-fx-padding: 8 0 8 20; -fx-text-fill: #FFFFFF;");
             btn.setCursor(Cursor.HAND);
             btn.setOnAction(e -> {
                 if (item.title().equalsIgnoreCase("Logout")) {
@@ -85,28 +85,29 @@ public class Menu {
             }
             System.out.println(posisi.toLowerCase());
             Object controller = switch (posisi.toLowerCase()) {
-                case "manager" -> new DashboardCtrl.DashboardManagerCtrl();
-                case "kasir" -> new DashboardCtrl.DashboardKasirCtrl(); // contoh, sesuaikan
+                case "Manager" -> new DashboardCtrl.DashboardManagerCtrl();
+                case "Kasir" -> new DashboardCtrl.DashboardKasirCtrl(); // contoh, sesuaikan
+                case "Admin" -> new DashboardCtrl();
                 default -> new DashboardCtrl();
             };
             list.add(new MenuItem("Dashboard",
-                    "/himma/pendidikan/views/dashboard/"+posisi.toLowerCase()+".fxml", controller));
+                    "/karaoke/poprock/views/dashboard/"+posisi.toLowerCase()+".fxml", controller));
 
             switch (role.toLowerCase()) {
-                case "admin" -> {
-                    list.add(new MenuItem("Play Station", "/himma/pendidikan/views/master_play_station/index.fxml"));
-                    list.add(new MenuItem("Jenis Play Station", "/himma/pendidikan/views/master_jenis_play_station/index.fxml"));
-                    list.add(new MenuItem("Karyawan", "/himma/pendidikan/views/master_karyawan/index.fxml"));
-                    list.add(new MenuItem("Metode Pembayaran", "/himma/pendidikan/views/master_metode_pembayaran/index.fxml"));
+                case "Admin" -> {
+                    list.add(new MenuItem("Beranda", "/himma/pendidikan/views/master_play_station/index.fxml"));
+                    list.add(new MenuItem("Ruangan", "/himma/pendidikan/views/master_jenis_play_station/index.fxml"));
+                    list.add(new MenuItem("Menu", "/himma/pendidikan/views/master_karyawan/index.fxml"));
+                    list.add(new MenuItem("Member", "/himma/pendidikan/views/master_metode_pembayaran/index.fxml"));
                 }
-                case "kasir" -> {
+                case "Kasir" -> {
                     list.add(new MenuItem("Transaksi Penyewaan", "/himma/pendidikan/views/transaksi_penyewaan_play_station/index.fxml"));
                 }
-                case "manager" -> {
+                case "Manager" -> {
                     list.add(new MenuItem("Laporan Penyewaan", "/himma/pendidikan/views/Laporan.fxml"));
                 }
             }
-            list.add(new MenuItem("Logout", "/himma/pendidikan/views/login/index.fxml"));
+            list.add(new MenuItem("Logout", "/karaoke/poprock/views/login/index.fxml"));
             return list;
         }
     }

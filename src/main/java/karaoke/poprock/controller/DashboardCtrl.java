@@ -26,21 +26,20 @@ import java.util.List;
 
 public class DashboardCtrl {
     @FXML
-    Text txtTotalKaryawan, txtTotalPlaystation, txtTotalMetodePembayaran, txtTotalJenisPlaystation;
+    Text txtTotalRuangan, txtTotalMenu, txtTotalMember;
 
     DBConnect connect = new DBConnect();
 
     AppCtrl app = AppCtrl.getInstance();
 
     public void initialize(){
-        List<SummaryTabel> summaryTabelList = getSummaryTabel();
-
-        txtTotalJenisPlaystation.setText(summaryTabelList.get(0).getTotal().toString());
-        txtTotalPlaystation.setText(summaryTabelList.get(1).getTotal().toString());
-        txtTotalKaryawan.setText(summaryTabelList.get(2).getTotal().toString());
-        txtTotalMetodePembayaran.setText(summaryTabelList.get(3).getTotal().toString());
-
-        System.out.println(summaryTabelList.get(3).getTotal().toString());
+//        List<SummaryTabel> summaryTabelList = getSummaryTabel();
+//
+//        txtTotalRuangan.setText(summaryTabelList.get(0).getTotal().toString());
+//        txtTotalMenu.setText(summaryTabelList.get(1).getTotal().toString());
+//        txtTotalMember.setText(summaryTabelList.get(2).getTotal().toString());
+//
+//        System.out.println(summaryTabelList.get(3).getTotal().toString());
     }
 
     public void loadSubPage() {
@@ -62,10 +61,10 @@ public class DashboardCtrl {
 //                DashboardManagerCtrl controller = new DashboardManagerCtrl(); // Buat controller
 //                loader.setController(controller);
 //            }
-//            else{
-//                System.out.println("ADMIN");
-//                loader = new FXMLLoader(getClass().getResource("/himma/pendidikan/views/dashboard/index.fxml"));
-//            }
+            else{
+                System.out.println("ADMIN");
+                loader = new FXMLLoader(getClass().getResource("/karaoke/poprock/views/dashboard/index.fxml"));
+            }
             pane = loader.load();
             app.getContentPane().getChildren().clear();
             app.getContentPane().getChildren().setAll(pane);
