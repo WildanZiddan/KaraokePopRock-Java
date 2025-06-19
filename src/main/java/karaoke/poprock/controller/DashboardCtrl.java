@@ -55,12 +55,12 @@ public class DashboardCtrl {
 //                loader.setController(new KaryawanCtrl.KaryawanCreateCtrl());
                 loader.setController(controller);
             }
-//            else if ("Manager".equals(role)) {
-//                System.out.println("MANAGER");
-//                loader = new FXMLLoader(getClass().getResource("/himma/pendidikan/views/dashboard/manager.fxml"));
-//                DashboardManagerCtrl controller = new DashboardManagerCtrl(); // Buat controller
-//                loader.setController(controller);
-//            }
+            else if ("Manajer".equals(role)) {
+                System.out.println("MANAGER");
+                loader = new FXMLLoader(getClass().getResource("/himma/pendidikan/views/dashboard/manajer.fxml"));
+                DashboardManagerCtrl controller = new DashboardManagerCtrl(); // Buat controller
+                loader.setController(controller);
+            }
             else{
                 System.out.println("ADMIN");
                 loader = new FXMLLoader(getClass().getResource("/karaoke/poprock/views/dashboard/index.fxml"));
@@ -103,9 +103,9 @@ public class DashboardCtrl {
 
     public static class DashboardManagerCtrl{
         @FXML
-        PieChart pcTopPs, pcJenisPs, pcPembayaran, pcKaryawan;
+        PieChart pcTopRuangan, pcTopMenu;
         @FXML
-        VBox vbTopPs, vbJenisPs, vbPembayaran, vbKaryawan;
+        VBox vbTopRuangan, vbTopMenu;
         @FXML
         BarChart<String, Double> bcPendapatan, bcTransaksi;
         @FXML
@@ -132,8 +132,8 @@ public class DashboardCtrl {
 //            Chart.pieChart(pcJenisPs, jenisPs, "Top 5 Jenis Playstation", vbJenisPs);
 //            List<TopMasterData> metodePembayaran = metodePembayaranSrvc.getTop5MetodePembayaran(tahun, bulan);
 //            Chart.pieChart(pcPembayaran, metodePembayaran, "Top 5 Metode Pembayaran", vbPembayaran);
-            List<TopMasterData> topKaryawan = karyawanSrvc.getTop5Karyawan(tahun, bulan);
-            Chart.pieChart(pcKaryawan, topKaryawan, "Top 5 Karyawan", vbKaryawan);
+//            List<TopMasterData> topKaryawan = karyawanSrvc.getTop5Karyawan(tahun, bulan);
+//            Chart.pieChart(pcKaryawan, topKaryawan, "Top 5 Karyawan", vbKaryawan);
 //            txtTotalPenyewaan.setText(String.valueOf(rekapTransaksi.getTotalPenyewaan()));
 //            txtTotalPendapatan.setText(String.valueOf(rekapTransaksi.getTotalPendapatan()));
 
@@ -241,16 +241,16 @@ public class DashboardCtrl {
             if (dpManager.getValue() == null) {
                 alert.showAlert(Alert.AlertType.WARNING, "WARNING", "Tanggal harus diisi!", false);
             } else {
-                pcTopPs.getData().clear();
-                vbTopPs.getChildren().clear();
-                pcJenisPs.getData().clear();
-                vbJenisPs.getChildren().clear();
-                pcPembayaran.getData().clear();
-                vbPembayaran.getChildren().clear();
-                pcKaryawan.getData().clear();
-                vbKaryawan.getChildren().clear();
-                bcPendapatan.getData().clear();
-                bcTransaksi.getData().clear();
+//                pcTopPs.getData().clear();
+//                vbTopPs.getChildren().clear();
+//                pcJenisPs.getData().clear();
+//                vbJenisPs.getChildren().clear();
+//                pcPembayaran.getData().clear();
+//                vbPembayaran.getChildren().clear();
+//                pcKaryawan.getData().clear();
+//                vbKaryawan.getChildren().clear();
+//                bcPendapatan.getData().clear();
+//                bcTransaksi.getData().clear();
 
                 LocalDate selectedDate = dpManager.getValue();
                 int tahun = selectedDate.getYear();
@@ -265,7 +265,7 @@ public class DashboardCtrl {
 //                List<TopMasterData> metodePembayaran = metodePembayaranSrvc.getTop5MetodePembayaran(tahun,bulan);
 //                Chart.pieChart(pcPembayaran, metodePembayaran, "Top 5 Metode Pembayaran", vbPembayaran);
                 List<TopMasterData> topKaryawan = karyawanSrvc.getTop5Karyawan(tahun,bulan);
-                Chart.pieChart(pcKaryawan, topKaryawan, "Top 5 Karyawan", vbKaryawan);
+//                Chart.pieChart(pcKaryawan, topKaryawan, "Top 5 Karyawan", vbKaryawan);
 //
 //                txtTotalPenyewaan.setText(String.valueOf(rekapTransaksi.getTotalPenyewaan()));
 //                txtTotalPendapatan.setText(String.valueOf(rekapTransaksi.getTotalPendapatan()));
@@ -277,14 +277,14 @@ public class DashboardCtrl {
 
         public void reset(ActionEvent e){
             dpManager.setValue(null);
-            pcTopPs.getData().clear();
-            vbTopPs.getChildren().clear();
-            pcJenisPs.getData().clear();
-            vbJenisPs.getChildren().clear();
-            pcPembayaran.getData().clear();
-            vbPembayaran.getChildren().clear();
-            pcKaryawan.getData().clear();
-            vbKaryawan.getChildren().clear();
+//            pcTopPs.getData().clear();
+//            vbTopPs.getChildren().clear();
+//            pcJenisPs.getData().clear();
+//            vbJenisPs.getChildren().clear();
+//            pcPembayaran.getData().clear();
+//            vbPembayaran.getChildren().clear();
+//            pcKaryawan.getData().clear();
+//            vbKaryawan.getChildren().clear();
             bcPendapatan.getData().clear();
             bcTransaksi.getData().clear();
 
@@ -304,7 +304,7 @@ public class DashboardCtrl {
 //            Chart.pieChart(pcPembayaran, metodePembayaran, "Top 5 Metode Pembayaran", vbPembayaran);
 
             List<TopMasterData> topKaryawan = karyawanSrvc.getTop5Karyawan(tahun, bulan);
-            Chart.pieChart(pcKaryawan, topKaryawan, "Top 5 Karyawan", vbKaryawan);
+//            Chart.pieChart(pcKaryawan, topKaryawan, "Top 5 Karyawan", vbKaryawan);
 //
 //            txtTotalPenyewaan.setText(String.valueOf(rekapTransaksi.getTotalPenyewaan()));
 //            txtTotalPendapatan.setText(String.valueOf(rekapTransaksi.getTotalPendapatan()));

@@ -64,10 +64,10 @@ public class Menu {
     private static void setActiveButton(Button activeButton, VBox menu) {
         for (var node : menu.getChildren()) {
             if (node instanceof Button btn) {
-                btn.setStyle("-fx-background-color: #020A7A; -fx-font-weight: bold; -fx-font-size: 16px;-fx-padding: 8 0 8 20; -fx-text-fill: #FFFFFF;");
+                btn.setStyle("-fx-background-color: #413277; -fx-font-weight: bold; -fx-font-size: 16px;-fx-padding: 8 0 8 20; -fx-text-fill: #FFFFFF;");
             }
         }
-        activeButton.setStyle("-fx-background-color: #FFFFFF; -fx-font-weight: bold;-fx-font-size: 16px;;-fx-padding: 8 0 8 20;-fx-text-fill: #020A7A;");
+        activeButton.setStyle("-fx-background-color: #FFFFFF; -fx-font-weight: bold;-fx-font-size: 16px;;-fx-padding: 8 0 8 20;-fx-text-fill: #413277;");
     }
 
     record MenuItem(String title, String fxmlPath, Object controller) {
@@ -85,26 +85,30 @@ public class Menu {
             }
             System.out.println(posisi.toLowerCase());
             Object controller = switch (posisi.toLowerCase()) {
-                case "Manager" -> new DashboardCtrl.DashboardManagerCtrl();
+                case "Manajer" -> new DashboardCtrl.DashboardManagerCtrl();
                 case "Kasir" -> new DashboardCtrl.DashboardKasirCtrl(); // contoh, sesuaikan
-                case "Admin" -> new DashboardCtrl();
                 default -> new DashboardCtrl();
             };
-            list.add(new MenuItem("Dashboard",
+            list.add(new MenuItem("Beranda",
                     "/karaoke/poprock/views/dashboard/"+posisi.toLowerCase()+".fxml", controller));
 
             switch (role.toLowerCase()) {
-                case "Admin" -> {
-                    list.add(new MenuItem("Beranda", "/himma/pendidikan/views/master_play_station/index.fxml"));
-                    list.add(new MenuItem("Ruangan", "/himma/pendidikan/views/master_jenis_play_station/index.fxml"));
-                    list.add(new MenuItem("Menu", "/himma/pendidikan/views/master_karyawan/index.fxml"));
-                    list.add(new MenuItem("Member", "/himma/pendidikan/views/master_metode_pembayaran/index.fxml"));
+                case "admin" -> {
+                    list.add(new MenuItem("Ruangan", "/karaoke/poprock/views/master_ruangan/index.fxml"));
+                    list.add(new MenuItem("Menu", "/karaoke/poprock/views/master_ruangan/index.fxml"));
+                    list.add(new MenuItem("Member", "/karaoke/poprock/views/master_ruangan/index.fxml"));
+                    list.add(new MenuItem("Karyawan", "/karaoke/poprock/views/master_ruangan/index.fxml"));
                 }
-                case "Kasir" -> {
-                    list.add(new MenuItem("Transaksi Penyewaan", "/himma/pendidikan/views/transaksi_penyewaan_play_station/index.fxml"));
+                case "kasir" -> {
+                    list.add(new MenuItem("Ruangan", "/karaoke/poprock/views/master_ruangan/index.fxml"));
+                    list.add(new MenuItem("Menu", "/karaoke/poprock/views/master_ruangan/index.fxml"));
+                    list.add(new MenuItem("Member", "/karaoke/poprock/views/master_ruangan/index.fxml"));
+                    list.add(new MenuItem("Karyawan", "/karaoke/poprock/views/master_ruangan/index.fxml"));
+                    list.add(new MenuItem("Transaksi", "/karaoker/poprock/views/transaksi_penyewaan_play_station/index.fxml"));
                 }
-                case "Manager" -> {
-                    list.add(new MenuItem("Laporan Penyewaan", "/himma/pendidikan/views/Laporan.fxml"));
+                case "manajer" -> {
+                    list.add(new MenuItem("Laporan Member", "/karaoke/poprock/views/Laporan.fxml"));
+                    list.add(new MenuItem("Laporan Pendapatan", "/karaoke/poprock/views/Laporan.fxml"));
                 }
             }
             list.add(new MenuItem("Logout", "/karaoke/poprock/views/login/index.fxml"));
