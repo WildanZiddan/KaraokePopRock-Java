@@ -4,72 +4,72 @@ import karaoke.poprock.connection.DBConnect;
 import karaoke.poprock.model.TopMasterData;
 import karaoke.poprock.util.SwalAlert;
 import karaoke.poprock.util.Validation;
-import karaoke.poprock.model.Karyawan;
-import karaoke.poprock.service.KaryawanSrvc;
+import karaoke.poprock.model.Ruangan;
+import karaoke.poprock.service.RuanganSrvc;
 
 import java.sql.*;
 import java.util.*;
 
 import static javafx.scene.control.Alert.AlertType.*;
 
-public class KaryawanSrvcImpl implements KaryawanSrvc{
+public class RuanganSrvcImpl implements RuanganSrvc {
     DBConnect connect = new DBConnect();
     Validation v = new Validation();
     SwalAlert swal = new SwalAlert();
+
     @Override
-    public Karyawan resultKaryawan(ResultSet rs) throws SQLException {
-        return new Karyawan(
-                v.getInt(rs,"id_karyawan"),
-                v.getString(rs,"nama_karyawan"),
-                v.getString(rs,"notelp_karyawan"),
-                v.getString(rs,"username"),
-                v.getString(rs,"password"),
-                v.getString(rs,"role"),
-                v.getString(rs,"status")
+    public Ruangan resultRuangan(ResultSet rs) throws SQLException {
+        return new Ruangan(
+                v.getInt(rs, "id_Ruangan"),
+                v.getString(rs, "nama_Ruangan"),
+                v.getString(rs, "tipe_Ruangan"),
+                v.getString(rs, "kapasistas"),
+                v.getDouble(rs, "tarif_perjam"),
+                v.getString(rs, "status")
         );
     }
 
     @Override
-    public List<Karyawan> getAllData() {
-        return getAllData(null, null, null, "id_karyawan", "ASC");
+    public List<Ruangan> getAllData() {
+        return getAllData(null, null, null, "id_Ruangan", "ASC");
     }
 
     @Override
-    public List<Karyawan> getAllData(String search, String status, String role, String sortColumn, String sortOrder) {
-        List<Karyawan> karyawanList = new ArrayList<>();
+    public List<Ruangan> getAllData(String search, String status, String tipe, String sortColumn, String sortOrder) {
+        List<Ruangan> ruanganList = new ArrayList<>();
         try {
-            String query = "EXEC sp_getListKaryawan ?, ?, ?, ?, ?";
+            String query = "EXEC sp_getListRuangan ?, ?, ?, ?, ?";
             connect.pstat = connect.conn.prepareStatement(query);
             connect.pstat.setString(1, search);
             connect.pstat.setString(2, status);
-            connect.pstat.setString(3, role);
+            connect.pstat.setString(3, tipe);
             connect.pstat.setString(4, sortColumn);
             connect.pstat.setString(5, sortOrder);
 
             connect.result = connect.pstat.executeQuery();
             while (connect.result.next()) {
-                karyawanList.add(resultKaryawan(connect.result));
+                ruanganList.add(resultRuangan(connect.result));
             }
             connect.result.close();
             connect.pstat.close();
         }catch (SQLException e){
             e.printStackTrace();
         }
-        return karyawanList;
+        return ruanganList;
     }
 
     @Override
-    public List<TopMasterData> getTop5Karyawan(Integer tahun, Integer bulan) {
-        List<TopMasterData> karyawanList = new ArrayList<>();
+    public List<TopMasterData> getTop5Ruangan(Integer tahun, Integer bulan) {
+        List<TopMasterData> ruanganList = new ArrayList<>();
         try{
-            String query = "SELECT * FROM fn_Top5KaryawanPalingSeringTransaksi(?, ?)";
+            String query = "SELECT * FROM fn_Top5RuanganPalingSeringPakai(?, ?)";
             connect.pstat = connect.conn.prepareStatement(query);
             connect.pstat.setInt(1, tahun);
             connect.pstat.setInt(2, bulan);
             connect.result = connect.pstat.executeQuery();
             while (connect.result.next()) {
-                karyawanList.add(new TopMasterData(
-                        connect.result.getString("nama_karyawan"),
+                ruanganList.add(new TopMasterData(
+                        connect.result.getString("tipe_Ruangan"),
                         connect.result.getInt("jumlah_transaksi"),
                         connect.result.getDouble("persen")
                 ));
@@ -79,18 +79,18 @@ public class KaryawanSrvcImpl implements KaryawanSrvc{
         }catch (SQLException e){
             e.printStackTrace();
         }
-        return karyawanList;
+        return ruanganList;
     }
 
     @Override
-    public Karyawan getDataById(Integer id)  {
+    public Ruangan getDataById(Integer id) {
         try {
-            String query = "SELECT * FROM sp_getByIdKaryawan(?)";
+            String query = "SELECT * FROM sp_getByIdRuangan(?)";
             connect.pstat = connect.conn.prepareStatement(query);
             connect.pstat.setInt(1, id);
             connect.result = connect.pstat.executeQuery();
             if(connect.result.next()) {
-                return resultKaryawan(connect.result);
+                return resultRuangan(connect.result);
             }
             connect.result.close();
             connect.pstat.close();
@@ -101,15 +101,14 @@ public class KaryawanSrvcImpl implements KaryawanSrvc{
     }
 
     @Override
-    public boolean saveData(Karyawan kry) {
+    public boolean saveData(Ruangan ruangan) {
         try{
-            String query = "{call sp_createKaryawan(?, ?, ?, ?, ?)}";
+            String query = "{call sp_createRuangan(?, ?, ?, ?)}";
             connect.cstat = connect.conn.prepareCall(query);
-            connect.cstat.setString(1, kry.getNama());
-            connect.cstat.setString(2, kry.getNoTelepon());
-            connect.cstat.setString(3, kry.getUsername());
-            connect.cstat.setString(4, kry.getPassword());
-            connect.cstat.setString(5, kry.getRole());
+            connect.cstat.setString(1, ruangan.getNama_ruangan());
+            connect.cstat.setString(2, ruangan.getTipe_ruangan());
+            connect.cstat.setString(3, ruangan.getKapasitas_ruangan());
+            connect.cstat.setDouble(4, ruangan.getTarif_ruangan());
             connect.cstat.execute();
 
             connect.cstat.close();
@@ -122,15 +121,14 @@ public class KaryawanSrvcImpl implements KaryawanSrvc{
     }
 
     @Override
-    public boolean updateData(Karyawan kry) {
+    public boolean updateData(Ruangan ruangan) {
         try{
-            String query = "{call sp_updateKaryawan(?, ?, ?, ?, ?)}";
+            String query = "{call sp_updateRuangan(?, ?, ?, ?)}";
             connect.cstat = connect.conn.prepareCall(query);
-            connect.cstat.setString(1, kry.getNama());
-            connect.cstat.setString(2, kry.getNoTelepon());
-            connect.cstat.setString(3, kry.getUsername());
-            connect.cstat.setString(4, kry.getPassword());
-            connect.cstat.setString(5, kry.getRole());
+            connect.cstat.setString(1, ruangan.getNama_ruangan());
+            connect.cstat.setString(2, ruangan.getTipe_ruangan());
+            connect.cstat.setString(3, ruangan.getKapasitas_ruangan());
+            connect.cstat.setString(4, ruangan.getStatus());
             connect.cstat.execute();
 
             connect.cstat.close();
@@ -146,7 +144,7 @@ public class KaryawanSrvcImpl implements KaryawanSrvc{
     @Override
     public boolean setStatus(Integer id) {
         try {
-            String query = "{call sp_setStatusKaryawan(?)}";
+            String query = "{call sp_setStatusRuangan(?)}";
             connect.cstat = connect.conn.prepareCall(query);
             connect.cstat.setInt(1, id);
             connect.cstat.executeUpdate();
@@ -158,24 +156,5 @@ public class KaryawanSrvcImpl implements KaryawanSrvc{
             swal.showAlert(ERROR,"Gagal", e.getMessage(),false);
             return false;
         }
-    }
-
-    @Override
-    public Karyawan auth(String username, String password) {
-        try {
-            String query = "EXEC sp_loginKaryawan ?, ?";
-            connect.pstat = connect.conn.prepareStatement(query);
-            connect.pstat.setString(1, username);
-            connect.pstat.setString(2, password);
-            connect.result = connect.pstat.executeQuery();
-            if(connect.result.next()) {
-                return resultKaryawan(connect.result);
-            }
-            connect.result.close();
-            connect.pstat.close();
-        }catch (SQLException e){
-            throw new RuntimeException(e.getMessage());
-        }
-        return null;
     }
 }

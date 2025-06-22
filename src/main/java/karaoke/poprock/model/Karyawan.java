@@ -1,7 +1,7 @@
 package karaoke.poprock.model;
 
 public class Karyawan {
-    private String id;
+    private int id;
     private String nama;
     private String noTelepon;
     private String username;
@@ -11,7 +11,7 @@ public class Karyawan {
 
     public Karyawan() {}
 
-    public Karyawan(String id, String nama, String noTelepon, String username, String password, String role, String status) {
+    public Karyawan(int id, String nama, String noTelepon, String username, String password, String role, String status) {
         this.id = id;
         this.nama = nama;
         this.noTelepon = noTelepon;
@@ -21,7 +21,7 @@ public class Karyawan {
         this.status = status;
     }
 
-    public Karyawan(String id, String nama, String noTelepon, String username, String role, String status) {
+    public Karyawan(int id, String nama, String noTelepon, String username, String role, String status) {
         this.id = id;
         this.nama = nama;
         this.noTelepon = noTelepon;
@@ -38,20 +38,20 @@ public class Karyawan {
         this.role = role;
     }
 
-    public Karyawan(String nama, String noTelepon, String username, String password, String posisi, Integer id) {
+    public Karyawan(String nama, String noTelepon, String username, String password, String posisi, int id) {
         this.nama = nama;
         this.noTelepon = noTelepon;
         this.username = username;
         this.password = password;
         this.role = posisi;
-        this.id = id.toString();
+        this.id = id;
     }
 
-    public String getId() {
+    public int getId() {
         return id;
     }
 
-    public void setId(String id) {
+    public void setId(int id) {
         this.id = id;
     }
 

@@ -21,6 +21,11 @@ public class DBConnect {
 
 //    public static void main(String[] args) {
 //        DBConnect db = new DBConnect();
-//        System.out.println("Connected to database");
+//        if(db != null) {
+//            System.out.println("Connected to database");
+//        }
+//        else {
+//            System.out.println("Failed to connect to database");
+//        }
 //    }
 }
