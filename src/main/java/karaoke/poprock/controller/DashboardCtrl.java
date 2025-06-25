@@ -57,7 +57,7 @@ public class DashboardCtrl {
             }
             else if ("Manajer".equals(role)) {
                 System.out.println("MANAGER");
-                loader = new FXMLLoader(getClass().getResource("/himma/pendidikan/views/dashboard/manajer.fxml"));
+                loader = new FXMLLoader(getClass().getResource("/karaoke/poprock/views/dashboard/manajer.fxml"));
                 DashboardManagerCtrl controller = new DashboardManagerCtrl(); // Buat controller
                 loader.setController(controller);
             }

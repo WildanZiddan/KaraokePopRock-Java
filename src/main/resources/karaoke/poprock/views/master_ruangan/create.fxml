@@ -24,9 +24,9 @@
                         <ComboBox fx:id="txtTipeR" editable="true" layoutX="68.0" layoutY="360.0" prefHeight="36.0" prefWidth="330.0" style="-fx-background-color: #0000;" />
                         <TextField fx:id="txtKapasitas" layoutX="68.0" layoutY="437.0" prefHeight="36.0" prefWidth="330.0" style="-fx-background-color: #ffffff;" />
                         <TextField fx:id="txtTarifR" layoutX="68.0" layoutY="511.0" prefHeight="36.0" prefWidth="330.0" style="-fx-background-color: #ffffff;" />
-                        <TextField fx:id="txtIdR" disable="true" editable="false" layoutX="578.0" layoutY="518.0" prefHeight="29.0" prefWidth="104.0" style="-fx-background-color: #ffffff;" />
-                        <Button fx:id="btnTambahR" blendMode="SCREEN" layoutX="718.0" layoutY="757.0" mnemonicParsing="false" onAction="#onClicktambah" prefHeight="52.0" prefWidth="114.0" style="-fx-background-radius: 15;" stylesheets="@design.css" textFill="TRANSPARENT" />
-                        <Button fx:id="btnKembaliR" blendMode="SCREEN" layoutX="588.0" layoutY="761.0" mnemonicParsing="false" onAction="#handleClicksKembali" prefHeight="52.0" prefWidth="114.0" style="-fx-background-radius: 15;" stylesheets="@design.css" textFill="TRANSPARENT" />
+<!--                        <TextField fx:id="txtIdR" disable="true" editable="false" layoutX="578.0" layoutY="518.0" prefHeight="29.0" prefWidth="104.0" style="-fx-background-color: #ffffff;" />-->
+<!--                        <Button fx:id="btnTambahR" blendMode="SCREEN" layoutX="718.0" layoutY="757.0" mnemonicParsing="false" onAction="#onClicktambah" prefHeight="52.0" prefWidth="114.0" style="-fx-background-radius: 15;" stylesheets="@design.css" textFill="TRANSPARENT" />-->
+<!--                        <Button fx:id="btnKembaliR" blendMode="SCREEN" layoutX="588.0" layoutY="761.0" mnemonicParsing="false" onAction="#handleClicksKembali" prefHeight="52.0" prefWidth="114.0" style="-fx-background-radius: 15;" stylesheets="@design.css" textFill="TRANSPARENT" />-->
                     </children>
                 </Pane>
             </children>

@@ -48,6 +48,7 @@ public class KaryawanCtrl extends EventListenerIndex {
     }
 
     public void handleClick(){
+        btnTambahData.setCursor(Cursor.HAND);
         btnTambahData.setOnAction(event -> {
             loadSubPage("add",null);
         });

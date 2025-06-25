@@ -39,7 +39,7 @@
                               <Font name="System Bold" size="32.0" />
                            </font>
                         </Text>
-                        <Text fx:id="txtTotalPlaystation" fill="WHITE" layoutX="34.0" layoutY="144.0" strokeType="OUTSIDE" strokeWidth="0.0" text="-">
+                        <Text fx:id="txtTotalRuangan" fill="WHITE" layoutX="34.0" layoutY="144.0" strokeType="OUTSIDE" strokeWidth="0.0" text="-">
                            <font>
                               <Font name="System Bold" size="74.0" />
                            </font>
@@ -61,7 +61,7 @@
                               <Font name="System Bold" size="32.0" />
                            </font>
                         </Text>
-                        <Text fx:id="txtTotalJenisPlaystation" fill="WHITE" layoutX="30.0" layoutY="148.0" strokeType="OUTSIDE" strokeWidth="0.0" text="-">
+                        <Text fx:id="txtTotalMenu" fill="WHITE" layoutX="30.0" layoutY="148.0" strokeType="OUTSIDE" strokeWidth="0.0" text="-">
                            <font>
                               <Font name="System Bold" size="74.0" />
                            </font>
@@ -80,7 +80,7 @@
                               <Font name="System Bold" size="32.0" />
                            </font>
                         </Text>
-                        <Text fx:id="txtTotalKaryawan" fill="WHITE" layoutX="28.0" layoutY="154.0" strokeType="OUTSIDE" strokeWidth="0.0" text="-">
+                        <Text fx:id="txtTotalMember" fill="WHITE" layoutX="28.0" layoutY="154.0" strokeType="OUTSIDE" strokeWidth="0.0" text="-">
                            <font>
                               <Font name="System Bold" size="74.0" />
                            </font>

@@ -23,7 +23,7 @@ public class RuanganSrvcImpl implements RuanganSrvc {
                 v.getInt(rs, "id_Ruangan"),
                 v.getString(rs, "nama_Ruangan"),
                 v.getString(rs, "tipe_Ruangan"),
-                v.getString(rs, "kapasistas"),
+                v.getString(rs, "kapasitas"),
                 v.getDouble(rs, "tarif_perjam"),
                 v.getString(rs, "status")
         );
@@ -85,7 +85,7 @@ public class RuanganSrvcImpl implements RuanganSrvc {
     @Override
     public Ruangan getDataById(Integer id) {
         try {
-            String query = "SELECT * FROM sp_getByIdRuangan(?)";
+            String query = "SELECT * FROM fn_getByIdRuangan(?)";
             connect.pstat = connect.conn.prepareStatement(query);
             connect.pstat.setInt(1, id);
             connect.result = connect.pstat.executeQuery();
