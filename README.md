@@ -6,7 +6,7 @@ A Java-based Karaoke Management System developed by **Group 8** for the **Pemrog
 ## 🖼️ Demo Screenshot
 
 Here’s a preview of the Karaoke PopRock :
-![Login Page](./Login Page.png)
+![Login Page](./Login Poprock.png)
 
 ---
 
