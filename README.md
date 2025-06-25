@@ -1,4 +1,4 @@
-![image](https://github.com/user-attachments/assets/0edf91c5-5b46-4253-b5f4-6785d284c3c9)![image](https://github.com/user-attachments/assets/e017fddb-e83e-496e-8208-f028af48894d)# 🎤 Karaoke PopRock 🎶  
+# 🎤 Karaoke PopRock 🎶  
 A Java-based Karaoke Management System developed by **Group 8** for the **Pemrograman 3** final project. This system helps karaoke businesses manage their operations smoothly — from room reservations to staff and menu management.
 
 ---
