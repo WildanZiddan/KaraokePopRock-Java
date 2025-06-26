@@ -3,6 +3,16 @@ A Java-based Karaoke Management System developed by **Group 8** for the **Pemrog
 
 ---
 
+## 🖼️ Demo Screenshot
+
+Here’s a preview of the Karaoke PopRock :
+<p align="center">
+  <img src="./Login%20Poprock.png" alt="Login Page" width="500"/>
+</p>
+
+
+---
+
 ## 📌 Overview
 **Karaoke PopRock** is a modern desktop application built with Java to help manage karaoke business activities. It was created as a final project for **Pemrograman 3** by a passionate student team. The system includes essential features for managing karaoke rooms, customers (members), staff, and menus — all within a simple and intuitive interface.
 
