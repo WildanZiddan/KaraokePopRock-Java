@@ -137,11 +137,9 @@ public class Menu {
                     list.add(new MenuItem("Ruangan", "/karaoke/poprock/views/master_ruangan/index.fxml"));
                     list.add(new MenuItem("Menu", "/karaoke/poprock/views/master_ruangan/index.fxml"));
                     list.add(new MenuItem("Member", "/karaoke/poprock/views/master_ruangan/index.fxml"));
-                    list.add(new MenuItem("Karyawan", "/karaoke/poprock/views/master_ruangan/index.fxml"));
+                    list.add(new MenuItem("Karyawan", "/karaoke/poprock/views/master_karyawan/index.fxml"));
                 }
                 case "kasir" -> {
-                    list.add(new MenuItem("Ruangan", "/karaoke/poprock/views/master_ruangan/index.fxml"));
-                    list.add(new MenuItem("Menu", "/karaoke/poprock/views/master_ruangan/index.fxml"));
                     list.add(new MenuItem("Member", "/karaoke/poprock/views/master_ruangan/index.fxml"));
                     list.add(new MenuItem("Transaksi", "/karaoker/poprock/views/transaksi_penyewaan_play_station/index.fxml"));
                 }

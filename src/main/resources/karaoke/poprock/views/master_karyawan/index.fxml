@@ -1,14 +1,133 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
 <?import java.lang.*?>
-<?import java.util.*?>
+<?import javafx.collections.*?>
+<?import javafx.geometry.*?>
 <?import javafx.scene.*?>
 <?import javafx.scene.control.*?>
+<?import javafx.scene.image.*?>
 <?import javafx.scene.layout.*?>
+<?import javafx.scene.text.*?>
 
-<AnchorPane xmlns="http://javafx.com/javafx"
-            xmlns:fx="http://javafx.com/fxml"
-            fx:controller="karaoke.poprock.controller.KaryawanCtrl"
-            prefHeight="400.0" prefWidth="600.0">
-
+<AnchorPane fx:id="pnlRuangan" maxWidth="-Infinity" prefHeight="726.0" prefWidth="1260.0" xmlns="http://javafx.com/javafx/17.0.12" xmlns:fx="http://javafx.com/fxml/1" fx:controller="karaoke.poprock.controller.KaryawanCtrl">
+    <children>
+        <ImageView fitHeight="225.0" fitWidth="1253.0" pickOnBounds="true" preserveRatio="true">
+            <image>
+                <Image url="@../../assets/image/Header Karyawan.png" />
+            </image>
+        </ImageView>
+        <TextField fx:id="tfSearch" blendMode="MULTIPLY" layoutX="232.0" layoutY="223.0" onAction="#handleSearch" prefHeight="36.0" prefWidth="460.0" promptText="Cari..." style="-fx-border-radius: 8; -fx-background-color: fffff; -fx-border-color: #413277; -fx-border-width: 1;" />
+        <Button fx:id="btnTambahData" layoutX="21.0" layoutY="224.0" mnemonicParsing="false" onAction="#handleClick" prefHeight="36.0" prefWidth="152.0" style="-fx-background-radius: 8; -fx-background-color: #413277;" text="Tambah Data" textFill="WHITE">
+            <font>
+                <Font name="Impact" size="16.0" />
+            </font>
+        </Button>
+        <MenuButton layoutX="894.0" layoutY="223.0" prefHeight="36.0" prefWidth="171.0" style="-fx-background-color: white; -fx-border-color: #020A7A; -fx-border-radius: 6px;" text="Filter">
+            <items>
+                <CustomMenuItem hideOnClick="false" styleClass="custom-menu-item">
+                    <content>
+                        <VBox spacing="10" style="-fx-padding: 10;">
+                            <Label style="-fx-font-weight: bold; -fx-text-fill: #000000;" text="Filter berdasarkan Status" />
+                            <ComboBox fx:id="cbFilterStatus" prefWidth="200">
+                                <items>
+                                    <FXCollections fx:factory="observableArrayList">
+                                        <String fx:value="Aktif" />
+                                        <String fx:value="Tidak Aktif" />
+                                    </FXCollections>
+                                </items>
+                            </ComboBox>
+                            <Label style="-fx-font-weight: bold; -fx-text-fill: #000000;" text="Filter berdasarkan Tipe" />
+                            <ComboBox fx:id="cbFilterRole" prefWidth="200">
+                                <items>
+                                    <FXCollections fx:factory="observableArrayList">
+                                        <String fx:value="Admin" />
+                                        <String fx:value="Kasir" />
+                                        <String fx:value="Manajer" />
+                                    </FXCollections>
+                                </items>
+                            </ComboBox>
+                            <Button onAction="#handleClear" prefWidth="200" style="-fx-background-color: #043F57; -fx-text-fill: cyan; -fx-font-weight: bold;" text="Clear" />
+                        </VBox>
+                    </content>
+                </CustomMenuItem>
+            </items>
+            <font>
+                <Font size="13.0" />
+            </font>
+            <cursor>
+                <Cursor fx:constant="HAND" />
+            </cursor>
+        </MenuButton>
+        <Pane layoutX="8.0" layoutY="275.0" prefHeight="560.0" prefWidth="1241.0">
+            <children>
+                <ListView fx:id="viewKaryawan" layoutY="3.0" prefHeight="547.0" prefWidth="1242.0">
+                    <HBox fx:id="itemHBox" alignment="CENTER" fillHeight="false" prefHeight="51.0" prefWidth="600.0" scaleShape="false" style="-fx-background-color: #413277; -fx-background-radius: 15;" xmlns="http://javafx.com/javafx/23.0.1" xmlns:fx="http://javafx.com/fxml/1">
+                        <AnchorPane fx:id="itemPane" prefHeight="51.0" prefWidth="1115.0">
+                            <children>
+                                <Label fx:id="role_lbl" layoutX="414.0" layoutY="18.0" text="Admin" textFill="WHITE">
+                                    <font>
+                                        <Font name="Impact" size="12.0" />
+                                    </font>
+                                </Label>
+                                <Label fx:id="username_lbl" layoutX="367.0" layoutY="18.0" text="8 orang" textFill="WHITE">
+                                    <font>
+                                        <Font name="Impact" size="12.0" />
+                                    </font>
+                                </Label>
+                                <Label fx:id="notelp_lbl" layoutX="262.0" layoutY="19.0" text="Reguler" textFill="WHITE">
+                                    <font>
+                                        <Font name="Impact" size="12.0" />
+                                    </font>
+                                </Label>
+                                <Label layoutX="556.0" layoutY="20.0" textFill="WHITE">
+                                    <font>
+                                        <Font name="Impact" size="12.0" />
+                                    </font>
+                                </Label>
+                                <Label fx:id="status_lbl" layoutX="576.0" layoutY="21.0" text="8.000" textFill="WHITE">
+                                    <font>
+                                        <Font name="Impact" size="12.0" />
+                                    </font>
+                                </Label>
+                                <Label fx:id="nama_lbl" layoutX="151.0" layoutY="19.0" text="POPY01" textFill="WHITE">
+                                    <font>
+                                        <Font name="Impact" size="12.0" />
+                                    </font>
+                                </Label>
+                                <Label fx:id="id_lbl" layoutX="21.0" layoutY="19.0" text="RGN001" textFill="WHITE">
+                                    <font>
+                                        <Font name="Impact" size="12.0" />
+                                    </font>
+                                </Label>
+                            </children>
+                        </AnchorPane>
+                        <Button fx:id="btnEdit" mnemonicParsing="false" prefHeight="16.0" prefWidth="31.0" style="-fx-background-color: #ffffff;">
+                            <graphic>
+                                <ImageView fitHeight="33.0" fitWidth="26.0" pickOnBounds="true" preserveRatio="true">
+                                    <viewport>
+                                        <Rectangle2D minX="20.0" />
+                                    </viewport>
+                                    <image>
+                                        <!--                                                            <Image url="@imgs/1.png" />-->
+                                    </image>
+                                </ImageView>
+                            </graphic>
+                        </Button>
+                        <Button fx:id="btnHapus" mnemonicParsing="false" prefHeight="16.0" prefWidth="31.0" style="-fx-background-color: #ffffff;">
+                            <graphic>
+                                <ImageView fitHeight="33.0" fitWidth="26.0" pickOnBounds="true" preserveRatio="true">
+                                    <viewport>
+                                        <Rectangle2D minX="20.0" />
+                                    </viewport>
+                                    <image>
+                                        <!--                                                            <Image url="@imgs/2.png" />-->
+                                    </image>
+                                </ImageView>
+                            </graphic>
+                        </Button>
+                    </HBox>
+                </ListView>
+            </children>
+        </Pane>
+    </children>
 </AnchorPane>

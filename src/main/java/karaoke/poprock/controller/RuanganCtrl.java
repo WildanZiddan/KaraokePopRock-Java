@@ -102,6 +102,33 @@ public class RuanganCtrl extends EventListenerIndex {
                     Button editBtn = new Button("✏");
                     Button hapusBtn = new Button("🗑");
 
+                    String currentStatus = ruangan.getStatus();
+                    boolean isAktif = "Aktif".equals(currentStatus);
+
+                    editBtn.setStyle("-fx-background-color: orange;");
+                    editBtn.setCursor(Cursor.HAND);
+                    hapusBtn.setCursor(Cursor.HAND);
+                    hapusBtn.setStyle("-fx-background-color: " + (isAktif ? "red" : "green")+";");
+                    editBtn.setOnAction(e -> loadSubPage("edit", ruangan.getId_ruangan()));
+                    if(currentStatus.equals("Tidak Aktif")) {
+                        editBtn.setVisible(false);
+                        hapusBtn.setAlignment(Pos.CENTER);
+                    }
+                    hapusBtn.setOnAction(e -> {
+                        String actionText = isAktif ? "menonaktifkan" : "mengaktifkan";
+                        boolean confirmed = new SwalAlert().showAlert(
+                                CONFIRMATION,
+                                "Konfirmasi",
+                                "Apakah anda yakin ingin " + actionText + " Ruangan dengan nama: " + nama_lbl.getText() + "?",
+                                true
+                        );
+                        if (confirmed) {
+                            ruanganSrvc.setStatus(ruangan.getId_ruangan());
+                            //loadData(search, status, sortColumn, sortOrdersearch, status, tipe, sortColumn, sortOrder);
+                        }
+                    });
+
+
                     HBox.setMargin(editBtn, new Insets(0, 0, 0, 400));
 
                     HBox row = new HBox(10, idLbl, namaLbl, tipeLbl, kapasitasLbl, tarifLbl, statusLbl, editBtn, hapusBtn);
@@ -137,17 +164,7 @@ public class RuanganCtrl extends EventListenerIndex {
         status_lbl.setFont(Font.font("Impact", 12));
         viewRuangan.setItems(data);
         viewRuangan.refresh();
-    //        btnEdit.setOnAction(event -> handleUpdate());
-    //        btnHapus.setOnAction(event -> handleHapus());
     }
-
-//    private void handleUpdate() {
-//        dashome.popUpdateRuangan(ruangan);
-//    }
-
-//    private void handleHapus() {
-//        dashome.hapusRuangan(ruangan);
-//    }
 
     public void handleClick(){
         btnTambahData.setCursor(Cursor.HAND);
@@ -202,19 +219,67 @@ public class RuanganCtrl extends EventListenerIndex {
     }
 
     public static class RuanganCreateCtrl extends EventListenerCreate{
+        @FXML
+        ComboBox<String> cbTipe;
+        @FXML
+        TextField tfNama, tfKapasitas, tfTarifRuangan;
+        @FXML
+        Button btnKembaliR;
 
-        @Override
-        public void handleAddData(ActionEvent e) {
+        Validation v = new Validation();
+        RuanganCtrl ruanganCtrl = new RuanganCtrl();
 
+        @FXML
+        public void initialize() {
+            //Dropdown.setDropdown(cbPosisi, List.of("Admin", "Manager", "Kasir"));
+            v.setNumbers(tfTarifRuangan);
+            handleClickBack();
         }
 
         @Override
         public void handleClear() {
+            tfNama.setText("");
+            cbTipe.setValue(null);
+            cbTipe.setPromptText("Pilih Tipe");
+            tfKapasitas.setText("");
+            tfTarifRuangan.setText("");
+        }
 
+        @Override
+        public void handleAddData(ActionEvent e) {
+            String nama = tfNama.getText();
+            String kapasitas = tfKapasitas.getText();
+            String tipe = cbTipe.getValue();
+            Double trf_ruangan = Double.valueOf(tfTarifRuangan.getText());
+
+            if (nama.isEmpty() || kapasitas.isEmpty() || tipe == null || trf_ruangan == null) {
+                new SwalAlert().showAlert(INFORMATION, "Validasi", "Semua field wajib diisi.", false);
+                return;
+            }
+            Ruangan rg = new Ruangan(nama, tipe, kapasitas, trf_ruangan);
+            if(ruanganSrvc.saveData(rg)){
+                ruanganCtrl.loadSubPage("index",null);
+            }
+        }
+
+        @Override
+        public void handleBack() {
+            super.handleBack();
+        }
+        public void handleClickBack() {
+            btnKembaliR.setOnAction(event ->{
+                ruanganCtrl.loadSubPage("index", null);
+            });
         }
     }
 
     public static class RuanganEditCtrl extends EventListenerUpdate{
+        @FXML
+        ComboBox<String> cbTipe;
+        @FXML
+        TextField tfNama, tfKapasitas, tfTarifRuangan;
+        @FXML
+        Button btnKembaliR;
 
         Validation v = new Validation();
         RuanganCtrl ruanganCtrl = new RuanganCtrl();
@@ -224,19 +289,59 @@ public class RuanganCtrl extends EventListenerIndex {
             this.id = id;
         }
 
+        @FXML
+        public void initialize() {
+            //Dropdown.setDropdown(cbPosisi, List.of("Admin", "Manager", "Kasir"));
+            loadData();
+//            v.setNumbers(tfTarifRuangan);
+            handleClickBack();
+        }
+
+
         @Override
         public void handleUpdateData(ActionEvent e) {
+            String nama = tfNama.getText();
+            String kapasitas = tfKapasitas.getText();
+            String tipe = cbTipe.getValue();
+            String tarifRuangan = tfTarifRuangan.getText();
+            Double trf_ruangan = Double.valueOf(tarifRuangan);
 
+            if (nama.isEmpty() || kapasitas.isEmpty() || tipe == null || trf_ruangan == null) {
+                new SwalAlert().showAlert(INFORMATION, "Validasi", "Semua field wajib diisi.", false);
+                return;
+            }
+            Ruangan rg = new Ruangan(id, nama, tipe, kapasitas, trf_ruangan);
+            if(ruanganSrvc.updateData(rg)){
+                ruanganCtrl.loadSubPage("index",null);
+            }
         }
 
         @Override
         public void loadData() {
-
+            if (id != null) {
+                Ruangan ruangan = ruanganSrvc.getDataById(id);
+                if (ruangan != null) {
+                    tfNama.setText(ruangan.getNama_ruangan());
+                    cbTipe.setValue(ruangan.getTipe_ruangan());
+                    tfKapasitas.setText(ruangan.getKapasitas_ruangan());
+                    tfTarifRuangan.setText(String.valueOf(ruangan.getTarif_ruangan()));
+                }
+            }
         }
 
         @Override
         public void handleClear() {
+            tfNama.setText("");
+            cbTipe.setValue(null);
+            cbTipe.setPromptText("Pilih Tipe");
+            tfKapasitas.setText("");
+            tfTarifRuangan.setText("");
+        }
 
+        public void handleClickBack() {
+            btnKembaliR.setOnAction(event ->{
+                ruanganCtrl.loadSubPage("index", null);
+            });
         }
     }
 }

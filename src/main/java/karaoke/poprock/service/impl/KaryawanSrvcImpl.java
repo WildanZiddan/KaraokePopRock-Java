@@ -85,7 +85,7 @@ public class KaryawanSrvcImpl implements KaryawanSrvc{
     @Override
     public Karyawan getDataById(Integer id)  {
         try {
-            String query = "SELECT * FROM sp_getByIdKaryawan(?)";
+            String query = "SELECT * FROM fn_getByIdKaryawan(?)";
             connect.pstat = connect.conn.prepareStatement(query);
             connect.pstat.setInt(1, id);
             connect.result = connect.pstat.executeQuery();
@@ -124,13 +124,14 @@ public class KaryawanSrvcImpl implements KaryawanSrvc{
     @Override
     public boolean updateData(Karyawan kry) {
         try{
-            String query = "{call sp_updateKaryawan(?, ?, ?, ?, ?)}";
+            String query = "{call sp_updateKaryawan(?,?, ?, ?, ?, ?)}";
             connect.cstat = connect.conn.prepareCall(query);
-            connect.cstat.setString(1, kry.getNama());
-            connect.cstat.setString(2, kry.getNoTelepon());
-            connect.cstat.setString(3, kry.getUsername());
-            connect.cstat.setString(4, kry.getPassword());
-            connect.cstat.setString(5, kry.getRole());
+            connect.cstat.setInt(1, kry.getId());
+            connect.cstat.setString(2, kry.getNama());
+            connect.cstat.setString(3, kry.getNoTelepon());
+            connect.cstat.setString(4, kry.getUsername());
+            connect.cstat.setString(5, kry.getPassword());
+            connect.cstat.setString(6, kry.getRole());
             connect.cstat.execute();
 
             connect.cstat.close();

@@ -94,7 +94,8 @@ public class RuanganSrvcImpl implements RuanganSrvc {
             }
             connect.result.close();
             connect.pstat.close();
-        }catch (SQLException e){
+        }
+        catch (SQLException e){
             e.printStackTrace();
         }
         return null;
@@ -110,9 +111,8 @@ public class RuanganSrvcImpl implements RuanganSrvc {
             connect.cstat.setString(3, ruangan.getKapasitas_ruangan());
             connect.cstat.setDouble(4, ruangan.getTarif_ruangan());
             connect.cstat.execute();
-
             connect.cstat.close();
-            swal.showAlert(INFORMATION,"Berhasil", "Data berhasil ditambahkan!",false);
+            swal.showAlert(INFORMATION, "Berhasil", "Data berhasil ditambahkan!", false);
             return true;
         }catch (SQLException e){
             swal.showAlert(ERROR,"Gagal", e.getMessage(),false);
@@ -123,12 +123,13 @@ public class RuanganSrvcImpl implements RuanganSrvc {
     @Override
     public boolean updateData(Ruangan ruangan) {
         try{
-            String query = "{call sp_updateRuangan(?, ?, ?, ?)}";
+            String query = "{call sp_updateRuangan(?, ?, ?, ?, ?)}";
             connect.cstat = connect.conn.prepareCall(query);
-            connect.cstat.setString(1, ruangan.getNama_ruangan());
-            connect.cstat.setString(2, ruangan.getTipe_ruangan());
-            connect.cstat.setString(3, ruangan.getKapasitas_ruangan());
-            connect.cstat.setString(4, ruangan.getStatus());
+            connect.cstat.setInt(1, ruangan.getId_ruangan());
+            connect.cstat.setString(2, ruangan.getNama_ruangan());
+            connect.cstat.setString(3, ruangan.getTipe_ruangan());
+            connect.cstat.setString(4, ruangan.getKapasitas_ruangan());
+            connect.cstat.setDouble(5, ruangan.getTarif_ruangan());
             connect.cstat.execute();
 
             connect.cstat.close();

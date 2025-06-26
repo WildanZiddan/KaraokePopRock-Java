@@ -21,6 +21,21 @@ public class Ruangan {
         this.status = status;
     }
 
+    public Ruangan(String nama_rg, String tipe_rg, String kapasitas_rg, Double tarif_rg) {
+        this.nama_ruangan = nama_rg;
+        this.tipe_ruangan = tipe_rg;
+        this.kapasitas_ruangan = kapasitas_rg;
+        this.tarif_ruangan = tarif_rg;
+    }
+
+    public Ruangan(int id, String nama, String tipe, String kapasitas, Double trfRuangan) {
+        this.id_ruangan = id;
+        this.nama_ruangan = nama;
+        this.tipe_ruangan = tipe;
+        this.kapasitas_ruangan = kapasitas;
+        this.tarif_ruangan = trfRuangan;
+    }
+
 
     public int getId_ruangan() {
         return id_ruangan;

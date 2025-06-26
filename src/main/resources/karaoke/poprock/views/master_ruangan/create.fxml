@@ -1,5 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
+<?import java.lang.String?>
+<?import javafx.collections.FXCollections?>
 <?import javafx.scene.control.Button?>
 <?import javafx.scene.control.ComboBox?>
 <?import javafx.scene.control.TextField?>
@@ -7,29 +9,37 @@
 <?import javafx.scene.image.ImageView?>
 <?import javafx.scene.layout.AnchorPane?>
 <?import javafx.scene.layout.Pane?>
-<?import javafx.scene.layout.StackPane?>
 
-<AnchorPane fx:id="createPane" maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" prefWidth="1260.0" style="-fx-background-color: white;" stylesheets="@../../assets/styles/style.css" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0" xmlns="http://javafx.com/javafx/21" xmlns:fx="http://javafx.com/fxml/1">
+<AnchorPane fx:id="createPane" maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" prefWidth="1294.0" style="-fx-background-color: white;" stylesheets="@../../assets/styles/style.css" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0" xmlns="http://javafx.com/javafx/21" xmlns:fx="http://javafx.com/fxml/1">
     <children>
-        <StackPane prefHeight="847.0" prefWidth="1260.0">
-            <children>
-                <Pane fx:id="pnltambahRuangan" prefHeight="815.0" prefWidth="1294.0">
-                    <children>
-                        <ImageView fitHeight="844.0" fitWidth="1193.0" pickOnBounds="true" preserveRatio="true">
-                            <image>
-                                <Image url="@../../assets/image/Tambah Ruangan.png" />
-                            </image>
-                        </ImageView>
-                        <TextField fx:id="txtNamaR" layoutX="68.0" layoutY="287.0" prefHeight="36.0" prefWidth="330.0" style="-fx-background-color: #ffffff;" />
-                        <ComboBox fx:id="txtTipeR" editable="true" layoutX="68.0" layoutY="360.0" prefHeight="36.0" prefWidth="330.0" style="-fx-background-color: #0000;" />
-                        <TextField fx:id="txtKapasitas" layoutX="68.0" layoutY="437.0" prefHeight="36.0" prefWidth="330.0" style="-fx-background-color: #ffffff;" />
-                        <TextField fx:id="txtTarifR" layoutX="68.0" layoutY="511.0" prefHeight="36.0" prefWidth="330.0" style="-fx-background-color: #ffffff;" />
-<!--                        <TextField fx:id="txtIdR" disable="true" editable="false" layoutX="578.0" layoutY="518.0" prefHeight="29.0" prefWidth="104.0" style="-fx-background-color: #ffffff;" />-->
-<!--                        <Button fx:id="btnTambahR" blendMode="SCREEN" layoutX="718.0" layoutY="757.0" mnemonicParsing="false" onAction="#onClicktambah" prefHeight="52.0" prefWidth="114.0" style="-fx-background-radius: 15;" stylesheets="@design.css" textFill="TRANSPARENT" />-->
-<!--                        <Button fx:id="btnKembaliR" blendMode="SCREEN" layoutX="588.0" layoutY="761.0" mnemonicParsing="false" onAction="#handleClicksKembali" prefHeight="52.0" prefWidth="114.0" style="-fx-background-radius: 15;" stylesheets="@design.css" textFill="TRANSPARENT" />-->
-                    </children>
-                </Pane>
-            </children>
-        </StackPane>
+            <ImageView fitHeight="225.0" fitWidth="1253.0" pickOnBounds="true" preserveRatio="true">
+                <image>
+                    <Image url="@../../assets/image/Header Ruangan.png" />
+                </image>
+            </ImageView>
+          <Pane fx:id="pnltambahRuangan" layoutX="12.0" layoutY="-7.0" prefHeight="823.0" prefWidth="1270.0">
+              <children>
+            <ImageView fitHeight="614.0" fitWidth="1013.0" layoutX="129.0" layoutY="205.0" pickOnBounds="true">
+               <image>
+                  <Image url="@../../assets/image/Form Tambah Ruangan.png" />
+               </image>
+            </ImageView>
+                  <TextField fx:id="tfNama" layoutX="208.0" layoutY="320.0" prefHeight="36.0" prefWidth="390.0" style="-fx-background-color: #ffffff; -fx-background-radius: 20;" />
+                  <ComboBox fx:id="cbTipe" layoutX="212.0" layoutY="390.0" prefHeight="36.0" prefWidth="390.0" promptText="Pilih Tipe" style="-fx-background-color: #ffffff;">
+                      <items>
+                          <FXCollections fx:factory="observableArrayList">
+                              <String fx:value="Regular" />
+                              <String fx:value="Premium" />
+                              <String fx:value="Luxury" />
+                          </FXCollections>
+                      </items>
+                  </ComboBox>
+                  <TextField fx:id="tfKapasitas" layoutX="212.0" layoutY="462.0" prefHeight="36.0" prefWidth="373.0" style="-fx-background-color: #ffffff;" />
+                  <TextField fx:id="tfTarifRuangan" layoutX="210.0" layoutY="534.0" prefHeight="36.0" prefWidth="394.0" style="-fx-background-color: #ffffff;" />
+                        <Button fx:id="btnTambahR" blendMode="SCREEN" layoutX="992.0" layoutY="767.0" mnemonicParsing="false" onAction="#handleAddData" prefHeight="52.0" prefWidth="141.0" style="-fx-background-color: transparent; -fx-background-radius: 15; -fx-border-color: transparent; -fx-text-fill: transparent;" />
+                        <Button fx:id="btnBersihkanR" blendMode="SCREEN" layoutX="851.0" layoutY="767.0" mnemonicParsing="false" onAction="#handleClear" prefHeight="52.0" prefWidth="141.0" style="-fx-background-color: transparent; -fx-background-radius: 15; -fx-border-color: transparent; -fx-text-fill: transparent;" />
+                        <Button fx:id="btnKembaliR" blendMode="SCREEN" layoutX="702.0" layoutY="767.0" mnemonicParsing="false" prefHeight="52.0" prefWidth="141.0" style="-fx-background-color: transparent; -fx-background-radius: 15; -fx-border-color: transparent; -fx-text-fill: transparent;" />
+              </children>
+          </Pane>
     </children>
 </AnchorPane>
